@@ -31,6 +31,7 @@
             this.pnlCells = new System.Windows.Forms.Panel();
             this.trBarSize = new System.Windows.Forms.TrackBar();
             this.lblSize = new System.Windows.Forms.Label();
+            this.btnStep = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.trBarSize)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,17 +54,30 @@
             // lblSize
             // 
             this.lblSize.AutoSize = true;
+            this.lblSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSize.Location = new System.Drawing.Point(568, 13);
             this.lblSize.Name = "lblSize";
-            this.lblSize.Size = new System.Drawing.Size(91, 13);
+            this.lblSize.Size = new System.Drawing.Size(145, 18);
             this.lblSize.TabIndex = 2;
             this.lblSize.Text = "Taille de la grille : ";
+            // 
+            // btnStep
+            // 
+            this.btnStep.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStep.Location = new System.Drawing.Point(571, 478);
+            this.btnStep.Name = "btnStep";
+            this.btnStep.Size = new System.Drawing.Size(141, 84);
+            this.btnStep.TabIndex = 3;
+            this.btnStep.Text = "STEP";
+            this.btnStep.UseVisualStyleBackColor = true;
+            this.btnStep.Click += new System.EventHandler(this.btnStep_Click);
             // 
             // View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(934, 612);
+            this.Controls.Add(this.btnStep);
             this.Controls.Add(this.lblSize);
             this.Controls.Add(this.trBarSize);
             this.Controls.Add(this.pnlCells);
@@ -82,6 +96,7 @@
         private System.Windows.Forms.Panel pnlCells;
         private System.Windows.Forms.TrackBar trBarSize;
         private System.Windows.Forms.Label lblSize;
+        private System.Windows.Forms.Button btnStep;
     }
 }
 

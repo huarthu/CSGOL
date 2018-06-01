@@ -8,27 +8,108 @@ using System.Threading.Tasks;
 
 namespace CSGOL
 {
-    class CellGrid
+    public class CellGrid
     {
         public List<Cell> cells;
-        private Panel cellPanel;
 
-        public CellGrid(Panel panel)
+        private int panelSize;
+        public int PanelSize
         {
-            this.cellPanel = panel;
+            get { return this.panelSize; }
+        }
+
+        private int width;
+        public int Width
+        {
+            get { return this.width; }
+        }
+
+        public CellGrid(int panelSize)
+        {
+            this.panelSize = panelSize;
         }
 
         public void InitCells(int num)
         {
+            width = num;
             cells = new List<Cell>();
-            var size = new Size(cellPanel.Width / num, cellPanel.Width / num);
-            for (int y = 0; y < cellPanel.Height; y += cellPanel.Height / num)
-                for (int x = 0; x < cellPanel.Width; x += cellPanel.Width / num)
+            var size = new Size(panelSize / width, panelSize / width);
+            for (int y = 0; y < width; y++)
+                for (int x = 0; x < width; x++)
                 {
-                    Cell cell = new Cell(size, new Point(x, y));
+                    Cell cell = new Cell(this, size, new Point(x * (panelSize / width), y * (panelSize / width)));
+                    cell.SetLogicalPosition(x, y);
+                    cell.SwitchCell(false);
                     cells.Add(cell);
                 }
+            SetAllNeighbors(cells, width);
         }
 
+        /// <summary>
+        /// Trouve les positions logiques des voisines du tableau selon les limites
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        private List<int[]> GetNeighbors(int x, int y, int lastIndex)
+        {
+            List<int[]> neighbors = new List<int[]>();
+            neighbors.Add(new int[] { x, y - 1 });
+            neighbors.Add(new int[] { x + 1, y - 1 });
+            neighbors.Add(new int[] { x + 1, y });
+            neighbors.Add(new int[] { x + 1, y + 1 });
+            neighbors.Add(new int[] { x, y + 1 });
+            neighbors.Add(new int[] { x - 1, y + 1 });
+            neighbors.Add(new int[] { x - 1, y });
+            neighbors.Add(new int[] { x - 1, y - 1 });
+            return neighbors;
+        }
+
+        /// <summary>
+        /// Assigne toutes les voisines des cellules
+        /// </summary>
+        /// <param name="cells"></param>
+        public void SetAllNeighbors(List<Cell> cells, int lastIndex)
+        {
+            foreach (Cell c in cells)
+            {
+                int x = c.XPosition;
+                int y = c.YPosition;
+
+                var validNeighbors = GetNeighbors(x, y, lastIndex);
+                foreach (int[] i in validNeighbors)
+                {
+                    foreach (Cell d in cells)
+                    {
+                        if (d.XPosition == i[0] && d.YPosition == i[1])
+                        {
+                            c.neighbors.Add(d);
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void NextGrid()
+        {
+            var temp = new CellGrid(this.panelSize);
+            temp.InitCells(this.width);
+            var next = temp.cells;
+            byte cellsAlive = 0;
+            for (int i = 0; i < this.cells.Count; i++)
+            {
+                cellsAlive = 0;
+                foreach (Cell c in cells[i].neighbors)
+                    if (c.isAlive)
+                        cellsAlive++;
+                if (cellsAlive == 3 || (cellsAlive == 2 && cells[i].isAlive == true))
+                    next[i].SwitchCell(true);
+                else
+                    next[i].SwitchCell(false);
+            }
+            this.cells = next;
+        }
     }
 }
