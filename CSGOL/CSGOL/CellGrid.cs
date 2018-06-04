@@ -33,11 +33,14 @@ namespace CSGOL
         {
             width = num;
             cells = new List<Cell>();
+            Point p = new Point();
             var size = new Size(panelSize / width, panelSize / width);
             for (int y = 0; y < width; y++)
                 for (int x = 0; x < width; x++)
                 {
-                    Cell cell = new Cell(this, size, new Point(x * (panelSize / width), y * (panelSize / width)));
+                    p.X = x * (panelSize / width);
+                    p.Y = y * (panelSize / width);
+                    Cell cell = new Cell(this, size, p);
                     cell.SetLogicalPosition(x, y);
                     cell.SwitchCell(false);
                     cells.Add(cell);

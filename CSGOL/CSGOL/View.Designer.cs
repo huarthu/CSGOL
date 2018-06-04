@@ -32,6 +32,8 @@
             this.trBarSize = new System.Windows.Forms.TrackBar();
             this.lblSize = new System.Windows.Forms.Label();
             this.btnStep = new System.Windows.Forms.Button();
+            this.btnAutoStep = new System.Windows.Forms.Button();
+            this.lblIteration = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.trBarSize)).BeginInit();
             this.SuspendLayout();
             // 
@@ -72,11 +74,34 @@
             this.btnStep.UseVisualStyleBackColor = true;
             this.btnStep.Click += new System.EventHandler(this.btnStep_Click);
             // 
+            // btnAutoStep
+            // 
+            this.btnAutoStep.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAutoStep.Location = new System.Drawing.Point(718, 478);
+            this.btnAutoStep.Name = "btnAutoStep";
+            this.btnAutoStep.Size = new System.Drawing.Size(133, 84);
+            this.btnAutoStep.TabIndex = 4;
+            this.btnAutoStep.Text = "autoSTEP";
+            this.btnAutoStep.UseVisualStyleBackColor = true;
+            this.btnAutoStep.Click += new System.EventHandler(this.btnAutoStep_Click);
+            // 
+            // lblIteration
+            // 
+            this.lblIteration.AutoSize = true;
+            this.lblIteration.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIteration.Location = new System.Drawing.Point(12, 565);
+            this.lblIteration.Name = "lblIteration";
+            this.lblIteration.Size = new System.Drawing.Size(84, 18);
+            this.lblIteration.TabIndex = 5;
+            this.lblIteration.Text = "Itération : ";
+            // 
             // View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(934, 612);
+            this.Controls.Add(this.lblIteration);
+            this.Controls.Add(this.btnAutoStep);
             this.Controls.Add(this.btnStep);
             this.Controls.Add(this.lblSize);
             this.Controls.Add(this.trBarSize);
@@ -97,6 +122,8 @@
         private System.Windows.Forms.TrackBar trBarSize;
         private System.Windows.Forms.Label lblSize;
         private System.Windows.Forms.Button btnStep;
+        private System.Windows.Forms.Button btnAutoStep;
+        private System.Windows.Forms.Label lblIteration;
     }
 }
 

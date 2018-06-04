@@ -7,12 +7,14 @@ namespace CSGOL
     public partial class View : Form
     {
         CellGrid cellGrid;
+        System.Timers.Timer timer;
+        long iteration = 0;
 
         public View()
         {
             InitializeComponent();
         }
-        
+
 
         /// <summary>
         /// Chargement de la vue
@@ -23,7 +25,15 @@ namespace CSGOL
         {
             cellGrid = new CellGrid(pnlCells.Width);
             cellGrid.InitCells((trBarSize.Value + 1) * 10);
+
+            timer = new System.Timers.Timer(20);
+            timer.Elapsed += timerTick;
             DrawCells(cellGrid);
+        }
+
+        private void timerTick(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            Step();
         }
 
         /// <summary>
@@ -55,26 +65,34 @@ namespace CSGOL
             DrawCells(cellGrid);
         }
 
-        private void btnStep_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Prochaine itération
+        /// </summary>
+        private void Step()
         {
             cellGrid.NextGrid();
             UpdatePanel(cellGrid);
+            iteration++;
+            lblIteration.Text = "Itération : " + iteration;
+        }
+
+        private void btnStep_Click(object sender, EventArgs e)
+        {
+            Step();
+        }
+
+        private void btnAutoStep_Click(object sender, EventArgs e)
+        {
+            if (timer.Enabled)
+                timer.Stop();
+            else
+                timer.Start();
         }
 
         private void UpdatePanel(CellGrid newCellGrid)
         {
             for (int i = 0; i < newCellGrid.cells.Count; i++)
                 pnlCells.Controls[i].BackColor = newCellGrid.cells[i].btnElement.BackColor;
-        }
-    }
-
-    public static class Zoo
-    {
-        public const int douze = 12;
-        public static void Write(string text)
-        {
-            Console.Write(text);
-            Console.ReadLine();
         }
     }
 }
