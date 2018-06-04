@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2024
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSGOL_Test", "CSGOL_Test\CSGOL_Test.csproj", "{4A1A0349-684D-45E1-AD2D-9976FD86692A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4A1A0349-684D-45E1-AD2D-9976FD86692A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A1A0349-684D-45E1-AD2D-9976FD86692A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A1A0349-684D-45E1-AD2D-9976FD86692A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A1A0349-684D-45E1-AD2D-9976FD86692A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {33A8C032-065F-405F-9777-116591219250}
+	EndGlobalSection
+EndGlobal

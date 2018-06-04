@@ -16,7 +16,14 @@ namespace CSGOL
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new View());
+
+            Controller controller = new Controller();
+
+            View view = new View(controller);
+            Model model = new Model(controller);
+
+            
+            Application.Run(view);
         }
     }
 }
