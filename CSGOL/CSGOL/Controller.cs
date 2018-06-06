@@ -23,8 +23,11 @@ namespace CSGOL
             set { this.model = value; }
         }
 
+        private Random rndName;
+
         public void Start()
         {
+            rndName = new Random();
             this.model.StartGrid(20);
             model.NextGrid();
         }
@@ -88,30 +91,38 @@ namespace CSGOL
                     this.model.cellGrid[x, y] = false;
         }
 
-        public void Import()
+        /// <summary>
+        /// Importer la grille
+        /// </summary>
+        public void Import(string path)
         {
 
 
         }
-
+        
+        /// <summary>
+        /// Exportation de la grille
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
         public bool Export(string path)
         {
             string toExport = "";
             short size = (short)this.model.cellGrid.GetLength(0);
             for (short y = 0; y < size; y++)
             {
-                for (short x = 0; x < size; x++)               
+                for (short x = 0; x < size; x++)
                     toExport += this.model.cellGrid[x, y].ToString() + " ";
-                toExport += "\n";
+                toExport += "|";
             }
             try
             {
-                File.WriteAllText(path, toExport);
+                File.WriteAllText(path + rndName.Next(0, Int32.MaxValue) + ".txt", toExport);
                 return true;
             }
             catch
             {
-                return false;                
+                return false;
             }
         }
     }

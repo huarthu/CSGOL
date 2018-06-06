@@ -12,7 +12,7 @@ namespace CSGOL
 
         //Variables model
         public bool[,] cellGrid;
-
+        public bool[,] nextGrid;
 
 
         public Model(Controller controller)
@@ -27,18 +27,22 @@ namespace CSGOL
         /// <param name="size"></param>
         public void StartGrid(short size)
         {
+
+
             cellGrid = null;
             cellGrid = new bool[size, size];
+
         }
 
         public bool[,] NextGrid()
         {
             short size = (short)cellGrid.GetLength(0);
-            bool[,] nextGrid = new bool[size, size];
+            nextGrid = new bool[size, size];
             byte cellsAlive;
             for (short y = 0; y < size; y++)
                 for (short x = 0; x < size; x++)
                 {
+
                     cellsAlive = 0;
                     if (x + 1 < size)
                     {
@@ -77,7 +81,7 @@ namespace CSGOL
                     if (cellsAlive == 3 || (cellGrid[x, y] && cellsAlive == 2))
                         nextGrid[x, y] = true;
                 }
-            
+
             return nextGrid;
         }
     }
